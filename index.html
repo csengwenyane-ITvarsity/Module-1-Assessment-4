@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 25 Highest Grossing Movies of All Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .table-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        th {
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        th:first-child {
+            width: 80px;
+            text-align: center;
+        }
+
+        th:nth-child(2) {
+            width: 100px;
+            text-align: center;
+        }
+
+        th:nth-child(3) {
+            width: auto;
+        }
+
+        th:last-child {
+            width: 200px;
+            text-align: right;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        }
+
+        td {
+            padding: 18px 15px;
+            font-size: 1rem;
+            vertical-align: middle;
+        }
+
+        .rank {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #e74c3c;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .year {
+            text-align: center;
+            font-weight: 600;
+            color: #2c3e50;
+            background: #ecf0f1;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .earnings {
+            text-align: right;
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1rem;
+        }
+
+        .earnings::before {
+            content: '$';
+            color: #27ae60;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .table-container {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+            
+            .rank {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Top 25 Highest Grossing Movies</h1>
+            <p>All-time box office champions that captured the world's imagination</p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Year</th>
+                        <th>Movie Title</th>
+                        <th>Worldwide Gross</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="rank">1</div></td>
+                        <td><div class="year">2009</div></td>
+                        <td class="title">Avatar</td>
+                        <td class="earnings">2,923,706,026</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">2</div></td>
+                        <td><div class="year">2019</div></td>
+                        <td class="title">Avengers: Endgame</td>
+                        <td class="earnings">2,799,439,100</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">3</div></td>
+                        <td><div class="year">2022</div></td>
+                        <td class="title">Avatar: The Way of Water</td>
+                        <td class="earnings">2,320,250,281</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">4</div></td>
+                        <td><div class="year">1997</div></td>
+                        <td class="title">Titanic</td>
+                        <td class="earnings">2,264,743,305</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">5</div></td>
+                        <td><div class="year">2015</div></td>
+                        <td class="title">Star Wars: The Force Awakens</td>
+                        <td class="earnings">2,071,310,218</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">6</div></td>
+                        <td><div class="year">2018</div></td>
+                        <td class="title">Avengers: Infinity War</td>
+                        <td class="earnings">2,052,415,039</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">7</div></td>
+                        <td><div class="year">2021</div></td>
+                        <td class="title">Spider-Man: No Way Home</td>
+                        <td class="earnings">1,921,847,111</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">8</div></td>
+                        <td><div class="year">2015</div></td>
+                        <td class="title">Jurassic World</td>
+                        <td class="earnings">1,671,537,444</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">9</div></td>
+                        <td><div class="year">2019</div></td>
+                        <td class="title">The Lion King</td>
+                        <td class="earnings">1,663,075,401</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">10</div></td>
+                        <td><div class="year">2012</div></td>
+                        <td class="title">The Avengers</td>
+                        <td class="earnings">1,520,538,536</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">11</div></td>
+                        <td><div class="year">2015</div></td>
+                        <td class="title">Furious 7</td>
+                        <td class="earnings">1,515,341,399</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">12</div></td>
+                        <td><div class="year">2019</div></td>
+                        <td class="title">Frozen II</td>
+                        <td class="earnings">1,450,026,933</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">13</div></td>
+                        <td><div class="year">2017</div></td>
+                        <td class="title">Avengers: Age of Ultron</td>
+                        <td class="earnings">1,402,809,540</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">14</div></td>
+                        <td><div class="year">2018</div></td>
+                        <td class="title">Black Panther</td>
+                        <td class="earnings">1,349,926,083</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">15</div></td>
+                        <td><div class="year">2011</div></td>
+                        <td class="title">Harry Potter and the Deathly Hallows – Part 2</td>
+                        <td class="earnings">1,342,321,665</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">16</div></td>
+                        <td><div class="year">2017</div></td>
+                        <td class="title">Star Wars: The Last Jedi</td>
+                        <td class="earnings">1,334,407,706</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">17</div></td>
+                        <td><div class="year">2018</div></td>
+                        <td class="title">Jurassic World: Fallen Kingdom</td>
+                        <td class="earnings">1,310,466,296</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">18</div></td>
+                        <td><div class="year">2013</div></td>
+                        <td class="title">Frozen</td>
+                        <td class="earnings">1,290,000,000</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">19</div></td>
+                        <td><div class="year">2017</div></td>
+                        <td class="title">Beauty and the Beast</td>
+                        <td class="earnings">1,263,521,126</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">20</div></td>
+                        <td><div class="year">2017</div></td>
+                        <td class="title">Incredibles 2</td>
+                        <td class="earnings">1,242,805,359</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">21</div></td>
+                        <td><div class="year">2017</div></td>
+                        <td class="title">The Fate of the Furious</td>
+                        <td class="earnings">1,238,764,765</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">22</div></td>
+                        <td><div class="year">2013</div></td>
+                        <td class="title">Iron Man 3</td>
+                        <td class="earnings">1,214,811,252</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">23</div></td>
+                        <td><div class="year">2015</div></td>
+                        <td class="title">Minions</td>
+                        <td class="earnings">1,159,398,397</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">24</div></td>
+                        <td><div class="year">2016</div></td>
+                        <td class="title">Captain America: Civil War</td>
+                        <td class="earnings">1,153,304,495</td>
+                    </tr>
+                    <tr>
+                        <td><div class="rank">25</div></td>
+                        <td><div class="year">2018</div></td>
+                        <td class="title">Aquaman</td>
+                        <td class="earnings">1,148,485,886</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Data sourced from <a href="https://en.wikipedia.org/wiki/List_of_highest-grossing_films" target="_blank">Wikipedia</a> | Created with HTML & CSS</p>
+        </div>
+    </div>
+</body>
+</html>
