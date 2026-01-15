@@ -201,23 +201,147 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+                margin-bottom: 8px;
             }
-            
-            .table-container {
-                padding: 15px;
-            }
-            
-            th, td {
-                padding: 12px 8px;
+
+            .header p {
                 font-size: 0.9rem;
             }
             
+            .table-container {
+                padding: 10px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                min-width: 600px;
+                font-size: 0.85rem;
+            }
+            
+            th {
+                padding: 12px 8px;
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+
+            th:first-child {
+                width: 60px;
+            }
+
+            th:nth-child(2) {
+                width: 70px;
+            }
+
+            th:last-child {
+                width: 150px;
+            }
+            
+            td {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            
             .rank {
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+            }
+
+            .year {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .title {
+                font-size: 0.9rem;
+                word-break: break-word;
+            }
+
+            .earnings {
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .footer {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+            }
+
+            .table-container {
+                padding: 5px;
+            }
+
+            table {
+                min-width: 550px;
+                font-size: 0.75rem;
+            }
+
+            th {
+                padding: 10px 6px;
+                font-size: 0.7rem;
+            }
+
+            td {
+                padding: 10px 6px;
+                font-size: 0.75rem;
+            }
+
+            .rank {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
+
+            .year {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+
+            .title {
+                font-size: 0.8rem;
+            }
+
+            .earnings {
+                font-size: 0.75rem;
+            }
+
+            .footer {
+                padding: 12px;
+                font-size: 0.75rem;
             }
         }
     </style>
